@@ -3,9 +3,13 @@
    padding:0
 }
 
+body::-webkit-scrollbar{display:none;}
+
 
 body {
    background-color: #282c34;
+   font-family: 'Lato', sans-serif;
+   font-family: 'Roboto', sans-serif;
  }
  
  .App {
@@ -156,4 +160,133 @@ body {
    border-radius: 50%;
    margin: 2px 5px;
  }
+
+ .msg_txt {
+   cursor:pointer;
+ }
+ 
+ .ImgFile .Imgs {
+     width:  100px;
+     height: 100px;
+     border-radius: 5px;
+     cursor: pointer;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  

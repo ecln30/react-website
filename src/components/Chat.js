@@ -19,7 +19,7 @@ import SignOut from './SignOut'
 import Message from './Message'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 
-function Chat({user}) {
+function Chat({user,list}) {
   const q = query(collection(db,'messages'),orderBy('createdAt'),limit(25))
   const [messages] = useCollectionData(q ,{idField:'id'});
   const [msg, setMsg] = useState(''); 
@@ -41,13 +41,20 @@ function Chat({user}) {
   }
     return (<>
         <main>
-        {messages?.map(msg => <Message key={msg.id} message={msg} />)} 
+        {messages?.map(msg => <Message key={msg.id} message={msg} 
+          id={msg.id}
+        />)}
+        <div className="ImgFile">
+        {list.map(url => <img className='Imgs' src={url} 
+          
+        />)}
+        </div>
        </main>
        <span ref={dummy}></span>
        <form onSubmit={sendMessage}>
 
       <input value={msg} onChange={(e) => setMsg(e.target.value)} placeholder="say something nice" />
-
+   
       <button type="submit" disabled={!msg}>🕊️</button>
 
     </form>
