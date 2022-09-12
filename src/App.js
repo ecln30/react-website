@@ -1,25 +1,98 @@
-import logo from './logo.svg';
-import './App.css';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React,{useState} from 'react'
+import './App.css'
+import Signin from './components/Signin'
+import Chat from './components/Chat'
+import SignOut from './components/SignOut'
+import {auth,db} from './firebase.js'
+import {useAuthState} from 'react-firebase-hooks/auth'
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { doc, deleteDoc,collection,getDocs,query } from "firebase/firestore"
 
 function App() {
+  const [user] = useAuthState(auth)
+  const delMsg = async f => {
+    const snap = await getDocs(collection(db,'messages'))
+    snap.forEach(msg => {
+      deleteDoc(doc(db,'messages', msg.id))
+    } )
+  }
+    
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <header>
+      <h1>⚛️🔥💬</h1>
+      <h1 onClick={delMsg}>clear</h1>
+      <SignOut />
+    </header>
+
+    <section>
+      {user ? <Chat /> : <Signin />}
+    </section>
+
+  </div>
+  )
 }
 
-export default App;
+export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
