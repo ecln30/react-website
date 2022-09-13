@@ -172,8 +172,21 @@ body {
      cursor: pointer;
  }
  
+.BigImg {
+  width:500px;
+  height:500px;
+  position: absolute;
+  top:10%;
+  right:20%;
+  border:none;
+  outline:none;
+  z-index:10;
+  display:none;
+}
  
- 
+.show{
+  display:block;
+}
  
  
  

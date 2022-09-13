@@ -20,8 +20,8 @@ function Message({ message}) {
     
     const {text,uid,photoURL} = message
     const msgClass = uid === auth.currentUser.uid ? 'sent' : 'received'
-    console.log(message)
-    
+
+  //  delete indivisual text when click the message
     const handleDel = async (e) => {
       const snap = await getDocs(collection(db,'messages'))
       let del = prompt("are you sure to delete this message")
@@ -34,8 +34,8 @@ function Message({ message}) {
     return (
         <>
           <div className={`message ${msgClass}`}>
-            <img src={photoURL} />
-            <p className="msg_txt" onClick={handleDel}>{text}</p>
+            <img  src={photoURL} />
+            <p  className="msg_txt" onClick={handleDel}>{text}</p>
           </div>
         </>
     )}

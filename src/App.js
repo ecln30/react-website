@@ -18,7 +18,7 @@ import Signin from './components/Signin'
 import Chat from './components/Chat'
 import SignOut from './components/SignOut'
 import {auth,db} from './firebase.js'
-import { ref,getStorage,uploadBytes,getDownloadURL, listAll } from 'firebase/storage'
+import { ref,getStorage,uploadBytes,getDownloadURL, listAll, deleteObject } from 'firebase/storage'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { doc, deleteDoc,collection,getDocs,query } from "firebase/firestore"
@@ -53,6 +53,26 @@ function App() {
             setList((prev) => [...prev, url]);
     })})})}, []);
 
+// delete select img from fire store 
+function handleDelete(e) {
+   let ImgDelete = prompt('Are you sure do this')
+   if(ImgDelete !== 'yes')return
+   listAll(imgListRef).then(res => {
+    res.items.forEach(item => {
+      console.log(item._location.path_)
+       getDownloadURL(item).then(url => {
+          if(url === e.target.src) {
+             const path = item._location.path_
+             const Delref = ref(storage, path)
+             deleteObject(Delref).then(f => alert('deleted img'))
+             const newItems = list?.filter(url => e.target.src !== url)
+             setList(newItems)
+          }
+       })
+    })
+   })
+}
+
 // delete all message from  firebasestore
   const delMsg = async f => {
     const snap = await getDocs(collection(db,'messages'))
@@ -83,7 +103,7 @@ function App() {
     </header>
 
     <section>
-      {user ? <Chat list={list} /> : <Signin />}
+      {user ? <Chat list={list} handleDelete={handleDelete} /> : <Signin />}
     </section>
 
   </div>
